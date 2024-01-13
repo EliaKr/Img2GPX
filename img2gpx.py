@@ -185,6 +185,7 @@ class Main:
             file.writelines(file_header)
             for i in self.RoutePoint_object_list:
                 file.writelines(str(i))
+            del i
             file.writelines(file_lastline)
 
     def run(self):

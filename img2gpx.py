@@ -203,6 +203,6 @@ class Main:
         self.createRoutePointObjectList()
         self.makeGPXFile()
         self.timeProcess("stop")
-        self.verbose_print(f"Processed {self.total_num} photos in {self.end_time - self.start_time}s").
+        self.verbose_print(f"Processed {self.total_num} photos in {self.end_time - self.start_time}s")
 
 run = Main()

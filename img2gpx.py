@@ -76,6 +76,7 @@ class RoutePoint:
     def __str__(self):
         # Return formatted route entry
         return f"<rtept lat=\"{self.latitude}\" lon=\"{self.longitude}\">\n<time>{self.timestamp}</time>\n<desc>{self.num}</desc>\n<sym>Dot</sym>\n<type><![CDATA[Dot]]></type>\n</rtept>"
+
 class Main:
     def __init__(self):
         # Get arguments given by user when running

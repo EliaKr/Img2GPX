@@ -1,4 +1,3 @@
-# na kanei del to object molis to vazei sto arxeio
 import exifread
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -144,7 +143,7 @@ class Main:
         self.filelist = []
         all_files = os.listdir(path=self.directory)
         for i in all_files:
-            if any(ext in i for ext in [".tiff", ".jpeg", ".jpg", ".png", ".webp", ".heic"]):
+            if any(ext in i for ext in [".tiff", ".jpeg", ".jpg", ".png", ".webp", ".heic", ".TIFF", ".JPEG", ".JPG", ".PNG", ".WEBP", ".HEIC"]):
                 self.filelist.append(i)
         self.verbose_print(f"All chosen files: {self.filelist}")
 

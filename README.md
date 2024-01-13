@@ -8,7 +8,7 @@ A python script to create a GPX path from image metadata. Useful for creating a 
 
 ## Running
 
-Run using the command: `img2gpx.py -d "~/directory" -f "filename"`
+Run using the command: `img2gpx.py -d "~/directory" -f "filename"`.
 If no directory is specified, then the directory where the `img2gpx.py` file is will be used. If no filename is specified then the current date and time will be used.
 
 ## TODO

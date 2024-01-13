@@ -171,10 +171,10 @@ class Main:
     
     # Create list of RoutePoint objects
     def createRoutePointObjectList(self):
-        self.RoutePoint_object_list = []
+        self.routepoint_object_list = []
         for i in self.image_object_list:
             obj = RoutePoint(i)
-            self.RoutePoint_object_list.append(obj)
+            self.routepoint_object_list.append(obj)
             self.verbose_print(f"Created RoutePoint object for photo: {i}")
     
     # Create .gpx file using the RoutePoint class __str__ method
@@ -184,7 +184,7 @@ class Main:
 
         with open(f"{self.directory}/{self.filename}.gpx", "w", encoding="utf-8") as file:
             file.writelines(file_header)
-            for i in self.RoutePoint_object_list:
+            for i in sorted(self.routepoint_object_list, key=lambda item: item.timestamp):
                 file.writelines(str(i))
             del i
             file.writelines(file_lastline)

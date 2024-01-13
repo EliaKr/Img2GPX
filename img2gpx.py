@@ -151,22 +151,22 @@ class Main:
     def createImageObjectList(self):
         self.image_object_list = []
         num = 1
-        total_num = 1
+        self.total_num = 1
         for i in self.filelist:
             with open(f"{self.directory}/{i}", "rb") as img:
                 try:
                     tags = exifread.process_file(img, details=False)
                     obj = Image(exifread.utils.get_gps_coords(tags)[0], exifread.utils.get_gps_coords(tags)[1], str(tags["Image DateTime"]), str(tags["EXIF OffsetTimeOriginal"]), num)
                     self.image_object_list.append(obj)
-                    self.verbose_print(f"Created Image object for photo {total_num}/{len(self.filelist)}: {obj}")
+                    self.verbose_print(f"Created Image object for photo {self.total_num}/{len(self.filelist)}: {obj}")
                     num = num + 1
-                    total_num = total_num + 1
+                    self.total_num = self.total_num + 1
                 except Exception as err:
                     if str(err) == "'NoneType' object is not subscriptable":
-                        self.verbose_print(f"Error creating Image object for photo {total_num}/{len(self.filelist)}: No location metadata")
+                        self.verbose_print(f"Error creating Image object for photo {self.total_num}/{len(self.filelist)}: No location metadata")
                     else:
-                        self.verbose_print(f"Error creating Image object for photo {total_num}/{len(self.filelist)}: {err}")
-                    total_num = total_num + 1
+                        self.verbose_print(f"Error creating Image object for photo {self.total_num}/{len(self.filelist)}: {err}")
+                    self.total_num = self.total_num + 1
     
     # Create list of RoutePoint objects
     def createRoutePointObjectList(self):
@@ -187,12 +187,21 @@ class Main:
                 file.writelines(str(i))
             del i
             file.writelines(file_lastline)
+    
+    def timeProcess(self, control = None):
+        if not control:
+            self.start_time = time.process_time()
+        elif control == "stop":
+            self.end_time = time.process_time()
 
     def run(self):
         self.verbose_print("Program started")
+        self.timeProcess()
         self.createFileList()
         self.createImageObjectList()
         self.createRoutePointObjectList()
         self.makeGPXFile()
+        self.timeProcess("stop")
+        self.verbose_print(f"Processed {self.total_num} photos in {self.end_time - self.start_time}s").
 
 run = Main()

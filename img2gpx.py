@@ -153,7 +153,7 @@ class Main:
         self.image_object_list = []
         num = 1
         self.total_num = 1
-        for i in self.filelist:
+        for i in sorted(self.filelist):
             with open(f"{self.directory}/{i}", "rb") as img:
                 try:
                     tags = exifread.process_file(img, details=False)
@@ -172,7 +172,7 @@ class Main:
     # Create list of RoutePoint objects
     def createRoutePointObjectList(self):
         self.routepoint_object_list = []
-        for i in self.image_object_list:
+        for i in sorted(self.image_object_list, key=lambda item: item.timestamp):
             obj = RoutePoint(i)
             self.routepoint_object_list.append(obj)
             self.verbose_print(f"Created RoutePoint object for photo: {i}")
@@ -184,7 +184,7 @@ class Main:
 
         with open(f"{self.directory}/{self.filename}.gpx", "w", encoding="utf-8") as file:
             file.writelines(file_header)
-            for i in sorted(self.routepoint_object_list, key=lambda item: item.timestamp):
+            for i in self.routepoint_object_list:
                 file.writelines(str(i))
             del i
             file.writelines(file_lastline)

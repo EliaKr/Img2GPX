@@ -88,10 +88,14 @@ class Main:
         else:
             self.verbose = False
         
-        # Check for -d directory argument (Directory must not have a trailing slash)
+        # Check for -d directory argument
         try:
             if "-d" in args:
                 self.directory = args[args.index("-d") + 1]
+
+                if self.directory[-1] == "/":
+                    self.directory = self.directory[0:-1]
+
                 self.verbose_print(f"Working directory: {self.directory}")
             else:
                 self.directory = ""

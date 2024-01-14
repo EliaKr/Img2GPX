@@ -176,6 +176,7 @@ class Main:
             obj = RoutePoint(i)
             self.routepoint_object_list.append(obj)
             self.verbose_print(f"Created RoutePoint object for photo: {i}")
+            del i
     
     # Create .gpx file using the RoutePoint class __str__ method
     def makeGPXFile(self):
@@ -186,7 +187,7 @@ class Main:
             file.writelines(file_header)
             for i in self.routepoint_object_list:
                 file.writelines(str(i))
-            del i
+                del i
             file.writelines(file_lastline)
     
     def timeProcess(self, control = None):

@@ -1,6 +1,6 @@
 # Img2GPX
 
-A python program to create a GPX path from image metadata. Useful for creating a visual plot of a path followed during travel.
+A Python program to create a GPX path from image metadata. Useful for creating a visual plot of a path followed during travel.
 
 Supported formats: TIFF, JPEG, PNG, Webp, HEIC
 
